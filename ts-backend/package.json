@@ -2,10 +2,11 @@
   "name": "ts-backend",
   "version": "0.1.0",
   "scripts": {
-    "dev": "node esbuild.js dev",
-    "build": "esbuild src/app.ts --bundle --outfile=dist/app.js"
+    "dev": "node esw.mjs src/app.ts",
+    "build": "esbuild src/app.ts --bundle --outdir=dist --platfrom=node"
   },
   "devDependencies": {
-    "esbuild": "^0.16.14"
+    "@types/node": "^18.11.18",
+    "esbuild": "^0.17.3"
   }
 }

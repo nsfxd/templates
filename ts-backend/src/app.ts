@@ -1,3 +1,3 @@
-const sum = (x: number, y: number) => x + y;
+import {sum} from "src/sum"
 
-console.info(sum(1, 21));
+console.info(sum(1, 20))
