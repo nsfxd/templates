@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "scripts": {
     "dev": "node esw.mjs src/app.ts",
+    "test": "node esw.mjs test/test.ts",
     "build": "esbuild src/app.ts --bundle --outdir=dist --platform=node"
   },
   "devDependencies": {
