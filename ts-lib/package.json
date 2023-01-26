@@ -5,6 +5,7 @@
   "types": "dist/lib.d.ts",
   "scripts": {
     "dev": "node esw.mjs src/lib.ts",
+    "test": "node esw.mjs test/test.ts",
     "build": "tsup src/lib.ts --sourcemap --dts"
   },
   "devDependencies": {
