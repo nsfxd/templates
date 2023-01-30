@@ -1,1 +1,7 @@
-{"version":3,"sources":["../src/lib.ts"],"sourcesContent":["export const sum = (x: number, y: number) => x + y\n"],"mappings":";;;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAO,IAAM,MAAM,CAAC,GAAW,MAAc,IAAI;","names":[]}
+{
+  "version": 3,
+  "sources": ["../src/lib.ts"],
+  "sourcesContent": ["export const sum = (x: number, y: number) => x + y\n"],
+  "mappings": "yaAAA,IAAAA,EAAA,GAAAC,EAAAD,EAAA,SAAAE,IAAA,eAAAC,EAAAH,GAAO,MAAME,EAAM,CAACE,EAAWC,IAAcD,EAAIC",
+  "names": ["lib_exports", "__export", "sum", "__toCommonJS", "x", "y"]
+}

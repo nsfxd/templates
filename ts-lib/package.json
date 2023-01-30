@@ -6,12 +6,13 @@
   "scripts": {
     "dev": "node esw.mjs src/lib.ts",
     "test": "node esw.mjs test/test.ts",
-    "build": "tsup src/lib.ts --sourcemap --dts"
+    "build:js": "esbuild --format=cjs --platform=node --outdir=dist --sourcemap --minify src/lib.ts",
+    "build:types": "tsc --emitDeclarationOnly --declaration src/lib.ts --declarationDir dist",
+    "build": "pnpm run build:js && pnpm run build:types"
   },
   "devDependencies": {
     "@types/node": "^18.11.18",
     "esbuild": "^0.17.3",
-    "tsup": "^6.5.0",
     "typescript": "^4.9.4"
   }
 }
