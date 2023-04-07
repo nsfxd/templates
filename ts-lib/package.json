@@ -3,12 +3,11 @@
   "version": "0.1.0",
   "main": "src/index.ts",
   "scripts": {
-    "dev": "node esw.mjs"
+    "dev": "node esdev.mjs"
   },
   "devDependencies": {
     "@types/node": "^18.15.11",
     "esbuild": "^0.17.15",
-    "glob": "^9.3.4",
     "typescript": "^5.0.3"
   }
 }

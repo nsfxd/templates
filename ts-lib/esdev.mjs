@@ -1,12 +1,14 @@
 import {spawn} from "node:child_process"
 import esbuild from "esbuild"
-import glob from "glob"
+import {readdirSync} from "node:fs"
 
-const DIR = "temp"
+const TEMP_DIR = "temp"
+const TEST_DIR = "test"
+
 let SERVER
 function onEnd() {
   if (SERVER) SERVER.kill("SIGINT")
-  SERVER = spawn("node", ["--test", DIR], {stdio: "inherit"})
+  SERVER = spawn("node", ["--test", TEMP_DIR], {stdio: "inherit"})
 }
 
 const plugins = [
@@ -18,11 +20,12 @@ const plugins = [
   },
 ]
 
-const entryPoints = await glob("test/**/*.test.ts")
+const entryPoints = readdirSync(TEST_DIR).map((v) => `${TEST_DIR}/${v}`)
+
 const ctx = await esbuild.context({
   entryPoints,
   bundle: true,
-  outdir: DIR,
+  outdir: TEMP_DIR,
   platform: "node",
   packages: "external",
   plugins,
