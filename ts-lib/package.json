@@ -1,18 +1,21 @@
 {
   "name": "ts-lib",
   "version": "0.1.0",
-  "main": "dist/lib.js",
-  "types": "dist/lib.d.ts",
+  "main": "src/index.ts",
   "scripts": {
-    "dev": "node esw.mjs src/lib.ts",
-    "test": "node esw.mjs test/test.ts",
-    "build:js": "esbuild --format=cjs --platform=node --outdir=dist --sourcemap --minify src/lib.ts",
-    "build:types": "tsc --emitDeclarationOnly --declaration src/lib.ts --declarationDir dist",
-    "build": "pnpm run build:js && pnpm run build:types"
+    "test": "node esw.mjs test",
+    "build": "pnpm run build:js && pnpm run build:types",
+    "build:js": "esbuild --format=cjs --platform=node --outdir=dist --sourcemap --minify --packages=external src/lib.ts",
+    "build:types": "tsc --emitDeclarationOnly --declaration src/lib.ts --declarationDir dist"
   },
   "devDependencies": {
-    "@types/node": "^18.11.18",
-    "esbuild": "^0.17.3",
-    "typescript": "^4.9.4"
+    "@types/mime-types": "^2.1.1",
+    "@types/node": "^18.15.11",
+    "esbuild": "^0.17.15",
+    "glob": "^9.3.4",
+    "typescript": "^5.0.3"
+  },
+  "dependencies": {
+    "mime-types": "^2.1.35"
   }
 }

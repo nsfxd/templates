@@ -1,26 +1,38 @@
-import {spawn} from 'node:child_process'
-import esbuild from 'esbuild'
+import {spawn} from "node:child_process"
+import esbuild from "esbuild"
+import glob from "glob"
 
-const filename = process.argv[2].split('/').at(-1).split('.').at(0)
+const IS_TEST = process.argv[2] === "test"
+const DIR = IS_TEST ? "temp" : "dist"
+
 let SERVER
 function onEnd() {
-  if (SERVER) SERVER.kill('SIGINT')
-  SERVER = spawn('node', [`temp/${filename}.js`], {stdio: 'inherit'})
+  if (SERVER) SERVER.kill("SIGINT")
+  SERVER = spawn("node", ["--test", DIR], {stdio: "inherit"})
 }
 
-const ctx = await esbuild.context({
-  entryPoints: [process.argv[2]],
-  bundle: true,
-  outdir: 'temp',
-  platform: 'node',
-  plugins: [
-    {
-      name: 'onEnd',
-      setup(b) {
-        b.onEnd(onEnd)
+const plugins = IS_TEST
+  ? [
+      {
+        name: "onEnd",
+        setup(b) {
+          b.onEnd(onEnd)
+        },
       },
-    },
-  ],
+    ]
+  : []
+
+const entryPoints = IS_TEST ? await glob("test/**/*.test.ts") : ["src/index.ts"]
+
+const ctx = await esbuild.context({
+  entryPoints,
+  sourcemap: !IS_TEST,
+  minify: !IS_TEST,
+  bundle: true,
+  outdir: DIR,
+  platform: "node",
+  packages: "external",
+  plugins,
 })
 
-await ctx.watch()
+IS_TEST && (await ctx.watch())
