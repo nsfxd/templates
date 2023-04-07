@@ -3,10 +3,7 @@
   "version": "0.1.0",
   "main": "src/index.ts",
   "scripts": {
-    "test": "node esw.mjs test",
-    "build": "pnpm run build:js && pnpm run build:types",
-    "build:js": "esbuild --format=cjs --platform=node --outdir=dist --sourcemap --minify --packages=external src/lib.ts",
-    "build:types": "tsc --emitDeclarationOnly --declaration src/lib.ts --declarationDir dist"
+    "dev": "node esw.mjs"
   },
   "devDependencies": {
     "@types/node": "^18.15.11",
